@@ -1,0 +1,13 @@
+<div class="thought {{thought.model}} ff-roboto-mono" [ngClass]="thoughtWidth()">
+  <img src="../../../../assets/images/{{thought.model}}.png" alt="Aspas coloridas">
+  <p class="content">{{thought.content}}</p>
+  <p class="author">{{thought.author}}</p>
+  <div class="actions">
+    <button class="edit-button">
+      <img src="../../../../assets/images/icone-editar.png" alt="Ícone de lápis">
+    </button>
+    <button class="delete-button">
+      <img src="../../../../assets/images/icone-excluir.png" alt="Ícone de lixeira">
+    </button>
+  </div>
+</div>
