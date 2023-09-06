@@ -39,7 +39,7 @@
         </label>
         Prévia:
         <div class="model model1 ff-roboto-mono">
-          <img src="../../../../assets/images/modelo1.png" alt="Aspas azuis">
+          <img src="../../../../assets/images/model1.png" alt="Aspas azuis">
           <p class="content">{{ thought.content }}</p>
           <p class="author">{{ thought.author }}</p>
         </div>
@@ -60,7 +60,7 @@
         </label>
         Prévia:
         <div class="model model1 ff-roboto-mono">
-          <img src="../../../../assets/images/modelo2.png" alt="Aspas azuis claras">
+          <img src="../../../../assets/images/model2.png" alt="Aspas azuis claras">
           <p class="content">{{ thought.content }}</p>
           <p class="author">{{ thought.author }}</p>
         </div>
@@ -81,15 +81,15 @@
         </label>
         Prévia:
         <div class="model model3 ff-roboto-mono">
-          <img src="../../../../assets/images/modelo3.png" alt="Aspas verdes">
+          <img src="../../../../assets/images/model3.png" alt="Aspas verdes">
           <p class="content">{{ thought.content }}</p>
           <p class="author">{{ thought.author }}</p>
         </div>
       </div>
     </div>
     <div class="actions">
-      <button (click)="createThought()" class="action-button">Salvar</button>
-      <button (click)="cancel()" class="action-button">Cancelar</button>
+      <button class="action-button">Salvar</button>
+      <button routerLink="/listThought" class="action-button">Cancelar</button>
     </div>
   </form>
 </section>
