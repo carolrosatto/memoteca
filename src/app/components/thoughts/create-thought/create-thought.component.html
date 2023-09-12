@@ -88,8 +88,8 @@
       </div>
     </div>
     <div class="actions">
-      <button class="action-button">Salvar</button>
-      <button routerLink="/listThought" class="action-button">Cancelar</button>
+      <button (click)="createThought()" class="action-button">Salvar</button>
+      <button (click)="cancel()" class="action-button">Cancelar</button>
     </div>
   </form>
 </section>
