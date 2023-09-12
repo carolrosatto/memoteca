@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Thought } from '../thoughts';
+import { ThougthsService } from '../thougths.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list-thoughts',
@@ -7,22 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListThoughtsComponent implements OnInit {
 
-  listThoughts = [
-    {
-      content: 'Teste 2',
-      author: 'Carolina :)',
-      model: 'model3'
-    },
-    {
-      content: 'Teste 2',
-      author: 'Carolina :)',
-      model: 'model1'
-    }
-  ]
+  listThoughts: Thought[] = []
 
-  constructor() { }
+  constructor(private service: ThougthsService) { }
 
   ngOnInit(): void {
+    this.service.list().subscribe((listThoughts) => {
+      this.listThoughts = listThoughts;
+    });
   }
 
 }

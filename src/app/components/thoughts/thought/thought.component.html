@@ -3,10 +3,10 @@
   <p class="content">{{thought.content}}</p>
   <p class="author">{{thought.author}}</p>
   <div class="actions">
-    <button class="edit-button">
+    <button class="edit-button" routerLink="/thoughts/editThought/{{thought.id}}">
       <img src="../../../../assets/images/icone-editar.png" alt="Ícone de lápis">
     </button>
-    <button class="delete-button">
+    <button class="delete-button" routerLink="/thoughts/deleteThought/{{thought.id}}">
       <img src="../../../../assets/images/icone-excluir.png" alt="Ícone de lixeira">
     </button>
   </div>
