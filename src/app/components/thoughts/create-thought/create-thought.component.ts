@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Thought } from '../thoughts';
 import { ThougthsService } from '../thougths.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -31,6 +30,7 @@ export class CreateThoughtComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required, 
+          Validators.pattern(/(.|\s)*\S(.|\s)*/),
           Validators.minLength(3)
         ]),
       ],
