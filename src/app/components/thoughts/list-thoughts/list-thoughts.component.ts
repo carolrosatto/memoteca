@@ -11,11 +11,12 @@ import { Observable } from 'rxjs';
 export class ListThoughtsComponent implements OnInit {
 
   listThoughts: Thought[] = []
+  currentPage: number = 1;
 
   constructor(private service: ThougthsService) { }
 
   ngOnInit(): void {
-    this.service.list().subscribe((listThoughts) => {
+    this.service.list(this.currentPage).subscribe((listThoughts) => {
       this.listThoughts = listThoughts;
     });
   }
