@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Thought } from '../thoughts';
 import { ThougthsService } from '../thougths.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-thought',
@@ -10,7 +10,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./create-thought.component.css'],
 })
 export class CreateThoughtComponent implements OnInit {
-
   form!: FormGroup;
 
   constructor(
@@ -21,16 +20,30 @@ export class CreateThoughtComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      content: ['Formulário reativo'],
-      author: [''],
-      model: ['model2']
-    })
+      content: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(/(.|\s)*\S(.|\s)*/)
+        ]),
+      ],
+      author: [
+        '',
+        Validators.compose([
+          Validators.required, 
+          Validators.minLength(3)
+        ]),
+      ],
+      model: [''],
+    });
   }
 
   createThought() {
-    this.service
-      .create(this.form.value)
-      .subscribe(() => this.router.navigate(['/listThought']));
+    if (this.form.valid) {
+      this.service
+        .create(this.form.value)
+        .subscribe(() => this.router.navigate(['/listThought']));
+    }
   }
 
   cancel() {
