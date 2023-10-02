@@ -138,3 +138,17 @@ input[type='radio']:checked+.custom-radio {
 input[type='radio']:checked+.custom-radio span {
   background: #154580;
 }
+
+.error__message { 
+  font-size: 12px;
+  margin-left: 5px;
+  color: red;
+  margin-top: -25px;
+  margin-bottom: 20px;
+}
+
+.disabled__button {
+  margin: 5px;
+  margin-top: 70px;
+  width: 200px;
+}
