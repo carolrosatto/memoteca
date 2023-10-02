@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ThougthsService } from '../thougths.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { lowerCaseValidator } from './lowercase-validator';
 
 @Component({
   selector: 'app-create-thought',
@@ -31,7 +32,8 @@ export class CreateThoughtComponent implements OnInit {
         Validators.compose([
           Validators.required, 
           Validators.pattern(/(.|\s)*\S(.|\s)*/),
-          Validators.minLength(3)
+          Validators.minLength(3),
+          lowerCaseValidator
         ]),
       ],
       model: [''],

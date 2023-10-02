@@ -26,7 +26,10 @@
       Autoria é obrigatória!
     </div>
     <div class="error__message" *ngIf="form.get('author')?.errors?.['minlength'] && form.get('author')?.touched">
-      Autoria precisa ter no mínimo 3 caracteres!
+      Autoria precisa ter no mínimo 3 caracteres.
+    </div>
+    <div class="error__message" *ngIf="form.get('author')?.errors?.['lowercase'] && form.get('author')?.touched">
+      Autoria aceita apenas caracteres minúsculos.
     </div>
     <label for="model">Selecione o modelo do card:</label>
     <div class="container-radio">
