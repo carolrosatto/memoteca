@@ -12,6 +12,7 @@ export class ListThoughtsComponent implements OnInit {
 
   listThoughts: Thought[] = []
   currentPage: number = 1;
+  hasMoreThoughts: boolean = true;
 
   constructor(private service: ThougthsService) { }
 
@@ -19,6 +20,15 @@ export class ListThoughtsComponent implements OnInit {
     this.service.list(this.currentPage).subscribe((listThoughts) => {
       this.listThoughts = listThoughts;
     });
+  }
+
+  loadThoughts() {
+    this.service.list(++this.currentPage).subscribe(listThoughts => {
+      this.listThoughts.push(...listThoughts);
+      if(!listThoughts.length) {
+        this.hasMoreThoughts = false;
+      }
+    })
   }
 
 }

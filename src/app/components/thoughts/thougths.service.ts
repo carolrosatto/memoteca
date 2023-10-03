@@ -12,7 +12,7 @@ export class ThougthsService {
   constructor(private http: HttpClient) {}
 
   list(page: number): Observable<Thought[]> {
-    const itemsPerPage = 3;
+    const itemsPerPage = 10;
     
     let params = new HttpParams()
       .set('_page', page)
