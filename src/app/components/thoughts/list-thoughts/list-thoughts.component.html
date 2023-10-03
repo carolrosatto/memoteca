@@ -9,21 +9,27 @@
         [(ngModel)]="filter"
         (keyup)="searchThoughts()"
       />
-      <img src="../../../../assets/images/lupa.png" alt="Ícone de lupa azul">
+      <img src="../../../../assets/images/lupa.png" alt="Ícone de lupa azul" />
     </div>
-    <h2 class="ff-inter">Meu mural</h2>
+    <h2 class="ff-inter">{{ title }}</h2>
     <div class="buttons">
-      <button class="action-button">Meu Mural</button>
-      <button class="action-button" (click)="listFavorites()">Meus Favoritos</button>
+      <button class="action-button" (click)="reloadComponent()">
+        Meu Mural
+      </button>
+      <button class="action-button" (click)="listFavorites()">
+        Meus Favoritos
+      </button>
       <button routerLink="/createThought" class="action-button">
         Novo pensamento
       </button>
     </div>
-
   </header>
   <div class="mural" *ngIf="listThoughts.length > 0; else emptyThoughts">
     <div *ngFor="let thought of listThoughts">
-      <app-thought [thought]="thought" [favoritesList]="favoritesList"></app-thought>
+      <app-thought
+        [thought]="thought"
+        [favoritesList]="favoritesList"
+      ></app-thought>
     </div>
   </div>
 </section>
