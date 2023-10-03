@@ -12,13 +12,18 @@
       <img src="../../../../assets/images/lupa.png" alt="Ícone de lupa azul">
     </div>
     <h2 class="ff-inter">Meu mural</h2>
-    <button routerLink="/createThought" class="action-button">
-      Adicionar pensamento
-    </button>
+    <div class="buttons">
+      <button class="action-button">Meu Mural</button>
+      <button class="action-button" (click)="listFavorites()">Meus Favoritos</button>
+      <button routerLink="/createThought" class="action-button">
+        Novo pensamento
+      </button>
+    </div>
+
   </header>
   <div class="mural" *ngIf="listThoughts.length > 0; else emptyThoughts">
     <div *ngFor="let thought of listThoughts">
-      <app-thought [thought]="thought"></app-thought>
+      <app-thought [thought]="thought" [favoritesList]="favoritesList"></app-thought>
     </div>
   </div>
 </section>

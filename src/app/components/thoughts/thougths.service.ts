@@ -11,7 +11,7 @@ export class ThougthsService {
 
   constructor(private http: HttpClient) {}
 
-  list(page: number, filter: string): Observable<Thought[]> {
+  list(page: number, filter: string, isFavorite: boolean): Observable<Thought[]> {
     const itemsPerPage = 10;
 
     let params = new HttpParams()
@@ -20,6 +20,10 @@ export class ThougthsService {
 
     if (filter.trim().length > 2) {
       params = params.set('q', filter);
+    }
+
+    if(isFavorite) {
+      params = params.set('isFavorite', true);
     }
 
     return this.http.get<Thought[]>(this.API, { params });

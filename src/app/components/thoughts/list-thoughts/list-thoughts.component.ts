@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Thought } from '../thoughts';
 import { ThougthsService } from '../thougths.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list-thoughts',
@@ -13,12 +12,14 @@ export class ListThoughtsComponent implements OnInit {
   currentPage: number = 1;
   hasMoreThoughts: boolean = true;
   filter: string = '';
+  isFavorite: boolean = false;
+  favoritesList: Thought[] = [];
 
   constructor(private service: ThougthsService) {}
 
   ngOnInit(): void {
     this.service
-      .list(this.currentPage, this.filter)
+      .list(this.currentPage, this.filter, this.isFavorite)
       .subscribe((listThoughts) => {
         this.listThoughts = listThoughts;
       });
@@ -26,7 +27,7 @@ export class ListThoughtsComponent implements OnInit {
 
   loadThoughts() {
     this.service
-      .list(++this.currentPage, this.filter)
+      .list(++this.currentPage, this.filter, this.isFavorite)
       .subscribe((listThoughts) => {
         this.listThoughts.push(...listThoughts);
         if (!listThoughts.length) {
@@ -39,8 +40,22 @@ export class ListThoughtsComponent implements OnInit {
     this.currentPage = 1;
     this.hasMoreThoughts = true;
 
-    this.service.list(this.currentPage, this.filter).subscribe(listThoughts => {
-      this.listThoughts = listThoughts;
-    } )
+    this.service
+      .list(this.currentPage, this.filter, this.isFavorite)
+      .subscribe((listThoughts) => {
+        this.listThoughts = listThoughts;
+      });
+  }
+
+  listFavorites() {
+    this.isFavorite = true;
+    this.hasMoreThoughts = true;
+    this.currentPage = 1;
+    this.service
+      .list(this.currentPage, this.filter, this.isFavorite)
+      .subscribe((favoriteThougthsList) => {
+        this.listThoughts = favoriteThougthsList
+        this.favoritesList = favoriteThougthsList
+      });
   }
 }
