@@ -39,6 +39,7 @@ export class EditThoughtComponent implements OnInit {
           ]),
         ],
         model: [thought.model],
+        isFavorite: [thought.isFavorite]
       });
     });
   }

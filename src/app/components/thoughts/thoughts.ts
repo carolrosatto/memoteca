@@ -2,5 +2,6 @@ export interface Thought {
   id?: number,
   content: string,
   author: string,
-  model: string
+  model: string,
+  isFavorite: boolean
 }

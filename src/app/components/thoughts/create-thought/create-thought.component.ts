@@ -37,6 +37,7 @@ export class CreateThoughtComponent implements OnInit {
         ]),
       ],
       model: [''],
+      isFavorite: false
     });
   }
 
