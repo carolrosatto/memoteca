@@ -1,16 +1,31 @@
 <section class="container">
   <header class="header d-flex">
+    <div class="search-thoughts">
+      <input
+        type="search"
+        class="filter"
+        placeholder="O que você procura?"
+        autofocus
+        [(ngModel)]="filter"
+        (keyup)="searchThoughts()"
+      />
+      <img src="../../../../assets/images/lupa.png" alt="Ícone de lupa azul">
+    </div>
     <h2 class="ff-inter">Meu mural</h2>
-    <button routerLink="/createThought" class="action-button">Adicionar pensamento</button>
+    <button routerLink="/createThought" class="action-button">
+      Adicionar pensamento
+    </button>
   </header>
-  <div class="mural" *ngIf="listThoughts.length > 0, else emptyThoughts">
+  <div class="mural" *ngIf="listThoughts.length > 0; else emptyThoughts">
     <div *ngFor="let thought of listThoughts">
       <app-thought [thought]="thought"></app-thought>
     </div>
   </div>
 </section>
-<app-load-more-button [hasMoreThoughts]="hasMoreThoughts" (click)="loadThoughts()">
-
+<app-load-more-button
+  [hasMoreThoughts]="hasMoreThoughts"
+  (click)="loadThoughts()"
+>
 </app-load-more-button>
 <ng-template #emptyThoughts>
   <div class="ff-inter empty-thoughts">

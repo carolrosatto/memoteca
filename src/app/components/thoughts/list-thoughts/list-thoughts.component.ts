@@ -6,29 +6,41 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-list-thoughts',
   templateUrl: './list-thoughts.component.html',
-  styleUrls: ['./list-thoughts.component.css']
+  styleUrls: ['./list-thoughts.component.css'],
 })
 export class ListThoughtsComponent implements OnInit {
-
-  listThoughts: Thought[] = []
+  listThoughts: Thought[] = [];
   currentPage: number = 1;
   hasMoreThoughts: boolean = true;
+  filter: string = '';
 
-  constructor(private service: ThougthsService) { }
+  constructor(private service: ThougthsService) {}
 
   ngOnInit(): void {
-    this.service.list(this.currentPage).subscribe((listThoughts) => {
-      this.listThoughts = listThoughts;
-    });
+    this.service
+      .list(this.currentPage, this.filter)
+      .subscribe((listThoughts) => {
+        this.listThoughts = listThoughts;
+      });
   }
 
   loadThoughts() {
-    this.service.list(++this.currentPage).subscribe(listThoughts => {
-      this.listThoughts.push(...listThoughts);
-      if(!listThoughts.length) {
-        this.hasMoreThoughts = false;
-      }
-    })
+    this.service
+      .list(++this.currentPage, this.filter)
+      .subscribe((listThoughts) => {
+        this.listThoughts.push(...listThoughts);
+        if (!listThoughts.length) {
+          this.hasMoreThoughts = false;
+        }
+      });
   }
 
+  searchThoughts() {
+    this.currentPage = 1;
+    this.hasMoreThoughts = true;
+
+    this.service.list(this.currentPage, this.filter).subscribe(listThoughts => {
+      this.listThoughts = listThoughts;
+    } )
+  }
 }
